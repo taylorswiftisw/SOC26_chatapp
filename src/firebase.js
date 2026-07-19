@@ -1,13 +1,15 @@
-// Import the functions you need from the SDKs you need
+
 import { initializeApp } from "firebase/app";
 import {getAuth, GoogleAuthProvider } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getFirestore } from "firebase/firestore";
+import {getDatabase} from "firebase/database";//import RTDB
 
-// Your web app's Firebase configuration
+
+//firebase personal details
 const firebaseConfig = {
   apiKey: "AIzaSyDSvbUZwAkovJMOOzQJunIdWK_moE3XyS0",
   authDomain: "chat-app-944cd.firebaseapp.com",
+  databaseURL: "https://chat-app-944cd-default-rtdb.firebaseio.com/",//rtdb link
   projectId: "chat-app-944cd",
   storageBucket: "chat-app-944cd.firebasestorage.app",
   messagingSenderId: "113669108523",
@@ -19,3 +21,5 @@ const app = initializeApp(firebaseConfig);
 
 export const auth=getAuth(app);
 export const googleProvider=new GoogleAuthProvider();
+export const db=getFirestore(app);
+export const rtdb=getDatabase(app);

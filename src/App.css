@@ -1,189 +1,517 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+html, body, #root {
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+/* --- 🌿 Cozy Soft Matcha Theme Palette --- */
+:root {
+  --matcha-bg: #849680;
+  --matcha-dark: #384536;
+  --matcha-active: rgba(250, 248, 245, 0.15);
+  --cream-vanilla: #FAF8F5;
+  --cream-border: #EFECE6;
+  --cozy-text-dark: #3C443B;
+  --cozy-text-light: #FAF8F5;
+  --cozy-text-muted: rgba(250, 248, 245, 0.6);
+  --presence-online: #E2B354; /* Warm cozy honey-yellow online status indicator */
+}
+
+/* Base Resets */
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-.app-container{
+body {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  background-color: #E5DFD3; /* Soft warm desk-mat background */
   display: flex;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/*  App Layout Containers */
+.app-outer-wrapper,
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
   height: 100vh;
 }
 
-.sidebar{
-  width: 350px;
-  background-color: #e5d6ce;
-  border-right: 1px solid #e0e0e0;
-}
-
-.chat-area{
-  flex:1;
-  background-color: #f8f2ef;
-
+/* The main physical rounded card nesting the app */
+.app-main-card {
+  position: fixed !important;
+  top: 0 !important;
+  left:0 !important;
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  max-height: none;
+  background-color: var(--matcha-bg);
+  border-radius: 0px;
+  margin: 0;
+  border: none !important;
   display: flex;
   flex-direction: column;
- 
+  box-shadow: 0 12px 40px rgba(56, 69, 54, 0.15);
 }
 
-.chat-header{
-  background-color: #EFD6CE;
-  padding: 15px;
-
+.app-columns {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
 }
-.message-list{
-  flex:1;
+
+/* Sidebar  */
+.sidebar {
+  width: 280px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  border-right: 1.5px dashed rgba(250, 248, 245, 0.25);
+  height: 100%;
+}
+
+.sidebar-scrollable {
+  flex: 1;
   overflow-y: auto;
   padding: 20px;
+}
 
+/* Lowercase Aesthetic Headers */
+.cozy-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  color: var(--cozy-text-light);
+}
+
+.cozy-header h2 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.cozy-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Hand-Drawn CSS Mascot (Leaf-Bean) */
+.leaf-bean-mascot {
+  width: 44px;
+  height: 44px;
+  background-color: var(--mascot-bg, #C2D3B8);
+  border-radius: 50%;
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-.message{
-  max-width: 60%;
-  padding: 10px ;
-  border-radius: 8px;
-  
-}
-
-.message.received{
-  align-self: flex-start;
-  background-color: #D2DCE4;
-}
-
-.message.sent{
-  align-self: flex-end;
-  background-color: #E7EBEE;
-}
-
-.chat-input-area{
-  background-color: #e5d6ce;
-  padding: 25px 20px;
-  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 12 px;
-  border-top: 1px solid #e0e0e0;
-
+  border: 1.5px solid var(--matcha-dark);
 }
 
-.icon-btn {
-  background: none;
-  border: none;
-  font-size: 1.3rem;     /* Makes the emojis look crisp and legible */
-  cursor: pointer;
-  font-weight: 600;
-  padding: 5px;
+/* sprout*/
+.leaf-bean-mascot::before {
+  content: '🌱';
+  position: absolute;
+  top: -15px; /* Nudges it down so it connects perfectly with his head */
+  font-size: 16px;
+}
+
+
+.leaf-bean-mascot::after {
+  content: '';
+  position: absolute;
+  top: 24px; /* Placed cleanly right beneath the eye line */
+  width: 7px; /* Wider smile */
+  height: 3.5px; /* Deeper smile curve */
+  border: 1.5px solid var(--matcha-dark);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+}
+
+
+.leaf-bean-eyes {
+  display: flex;
+  gap: 7px; /* Holds them perfectly centered without looking wide-eyed */
+  margin-top: -3px; 
+}
+
+.leaf-bean-eyes::before,
+.leaf-bean-eyes::after {
+  content: '';
+  width: 4.5px; /* Bigger, clear eyes */
+  height: 4.5px; /* Fixed from .5px so they are perfectly round circles! */
+  background-color: var(--matcha-dark);
   border-radius: 50%;
-  transition: background 0.2s;
 }
 
-.icon-btn:hover {
-  background-color: #060606; /* Soft circle highlight on hover */
-}
-
-.main-input {
-  flex: 1;               /* MAGIC LINE: Tells the box to grow and fill all empty space */
-  padding: 12px 16px;
-  border: 1px solid #e9e5e5;
-  border-radius: 24px;   /* Gives it that modern, rounded pill look */
-  font-size: 0.95rem;
-  outline: none;
-  background-color: #ffffff;
-  color: #333333;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-
-.send-btn {
-  background-color: #5f5155; /* Classic WhatsApp-style green */
-  color: white;
-
-  padding: 5px 1px;
-  border-radius: 20px;
-  font-weight: 500;
-  cursor: pointer;
+.leaf-bean-blush {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  gap: 17px; /* Widened to frame the bigger eyes and mouth flawlessly */
+  position: absolute;
+  bottom: 14px; /* Lifted up from the floor so they sit on his cheeks instead of his chin */
 }
 
-.send-btn:hover {
-  background-color: #060606;
+.leaf-bean-blush::before,
+.leaf-bean-blush::after {
+  content: '';
+  width: 3.5px; /* Scaled up slightly to match the bigger facial features */
+  height: 2px;
+  background-color: #FFA6A6;
+  border-radius: 50%;
 }
 
-/* THE CONTACT CARD CONTAINER */
-.contact-card {
-  display: flex;         /* Places Avatar next to Contact Info */
-  align-items: center;
-  padding: 12px 15px;
-  border-bottom: 1px solid #f0f0f0;
-  cursor: pointer;
-}
-
-.contact-card.active {
-  background-color: #ebebeb; /* Highlights the open chat */
-}
-
-/* THE PROFILE PICTURE (AVATAR) */
-.avatar {
-  width: 45px;
-  height: 45px;
-  background-color: #0084ff;
-  color: white;
-  border-radius: 50%;    /* Turns the square block into a perfect circle */
-  display: flex;         /* Centers the text initials 'JD' perfectly inside */
+/* add Room Button */
+.btn-cozy-add {
+  background-color: var(--matcha-dark); 
+  color: #faf8f5;                      
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
   font-weight: bold;
-  margin-right: 12px;
-  flex-shrink: 0;        /* Prevents the circle from getting squished */
+  transition: opacity 0.2s ease;
 }
 
-/* THE INFO WRAPPER */
-.contact-info {
-  flex: 1;               /* Forces info block to claim all remaining width */
-  display: flex;
-  flex-direction: column;/* Stacks header row over meta row */
-  gap: 4px;
+.btn-cozy-add:hover {
+  opacity: 0.9;
 }
 
-/* ROW 1: Name and Time */
-.contact-header-row {
+/* Sidebar lists */
+.cozy-list {
   display: flex;
-  justify-content: space-between; /* Pushes Name to far-left, Time to far-right */
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.cozy-card,
+.contact-card {
+  display: flex;
   align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  color: var(--cozy-text-light);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+  border-bottom: none; /* Clears old list lines */
 }
 
-.contact-time {
-  font-size: 0.75rem;
-  color: #888;
+.cozy-card.active,
+.contact-card.active {
+  background-color: var(--matcha-active);
 }
 
-/* ROW 2: Message Preview and Badge */
-.contact-meta-row {
+.cozy-card h4,
+.contact-card h4 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.cozy-divider {
+  border: none;
+  border-bottom: 1.5px dashed rgba(250, 248, 245, 0.2);
+  margin: 16px 0;
+}
+
+/* --- 🥞 The Continuous Dark Bottom Tray --- */
+.bottom-tray {
+  background-color: var(--matcha-dark);
+  height: 68px;
   display: flex;
-  justify-content: space-between; /* Pushes Preview text left, Badge right */
   align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border-top: 1.5px solid rgba(56, 69, 54, 0.3);
 }
 
-.preview-text {
+.tray-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-avatar,
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--cream-vanilla);
+  object-fit: cover;
+  background-color: transparent; /* Overrides previous blue background */
+}
+
+.profile-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--presence-online);
+  border: 1.5px solid var(--matcha-dark);
+}
+
+.tray-status-text {
+  color: var(--cozy-text-light);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+
+.btn-bye {
+  background-color: var(--cream-vanilla);
+  color: var(--cozy-text-dark);
+  border: 1.5px solid var(--matcha-dark);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: inherit;
+  font-weight: 600;
   font-size: 0.85rem;
-  color: #666;
-  white-space: nowrap;     /* Prevents text from breaking into a second line */
-  overflow: hidden;        /* Hides any text that overflows */
-  text-overflow: ellipsis; /* Adds the professional "..." if text is too long */
-  max-width: 180px;        /* Cuts off text before it hits the badge */
+  cursor: pointer;
+  transition: transform 0.1s, background-color 0.2s;
 }
 
-/* THE GREEN UNREAD BADGE COUNTER */
-.unread-badge {
-  background-color: #25d366; /* WhatsApp Green */
-  color: white;
-  font-size: 0.75rem;
-  font-weight: bold;
-  padding: 2px 6px;
+.btn-bye:hover {
+  background-color: var(--cream-border);
+  transform: translateY(-1px);
+}
+
+/* --- ☕ Inner Chat Window Container --- */
+.chat-window-wrapper,
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  overflow: hidden;
+  background-color: transparent; /* Inherits main matcha card color */
+}
+
+/* The cozy rounded paper sheet holding chat history */
+.chat-card {
+  background-color: var(--cream-vanilla);
+  border-radius: 20px;
+  border: 1.5px solid var(--matcha-dark);
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.chat-header {
+  background-color: transparent;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1.5px dashed rgba(56, 69, 54, 0.15);
+}
+
+.chat-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cozy-text-dark);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Message board scroll body */
+.chat-messages,
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Message Rows and Bubbles */
+.message-row {
+  display: flex;
+  width: 100%;
+}
+
+.message-row.sent {
+  justify-content: flex-end;
+}
+
+.message-bubble,
+.message {
+  max-width: 65%;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.message-bubble.received,
+.message.received {
+  align-self: flex-start;
+  background-color: var(--matcha-bg);;
+  color: var(--cozy-text-dark);
+  border-radius: 18px 18px 18px 4px;
+  border: 1px solid rgba(56, 69, 54, 0.08);
+}
+
+.message-bubble.sent,
+.message.sent {
+  align-self: flex-end;
+  background-color: var(--matcha-bg);;
+  color: var(--cozy-text-light);
+  border-radius: 18px 18px 4px 18px;
+}
+
+/* Rounded Input Pill Frame */
+.chat-input-area {
+  background-color: transparent;
+  padding: 18px 24px;
+  border-top: none;
+}
+
+.chat-input-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  margin: 16px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 30px;
+}
+
+.chat-input-pill input,
+.main-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 8px 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--cozy-text-dark);
+  outline: none;
+  box-shadow: none;
+}
+
+.chat-input-pill input::placeholder {
+  color: #A09E9B;
+}
+
+
+.btn-cozy-send,
+.send-btn {
+  width: 36px;
+  height: 36px;
+  background-color: #72846A;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  padding: 0;
+  gap: 0;
+  transition: background-color 0.2s;
+}
+
+.btn-cozy-send:hover,
+.send-btn:hover {
+  background-color: var(--matcha-dark);
+}
+
+/*Scrollbar Styling  */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(56, 69, 54, 0.15);
   border-radius: 10px;
 }
 
+/*overrides to avoid default matcha theme*/
+.app-main-card.theme-lavender {
+  --matcha-bg: #AC9FBB;
+  --matcha-dark: #3E344A;
+  --matcha-active: rgba(250, 248, 245, 0.2);
+  --mascot-bg: #D2C7E0;
+}
+.app-main-card.theme-lavender .btn-cozy-send,
+.app-main-card.theme-lavender .btn-cozy-add {
+  background-color: #6E5F7B;
+}
+
+
+.app-main-card.theme-peach {
+  --matcha-bg: #EAB198;
+  --matcha-dark: #563121;
+  --matcha-active: rgba(250, 248, 245, 0.2);
+  --mascot-bg: #F5D2C4;
+}
+.app-main-card.theme-peach .btn-cozy-send,
+.app-main-card.theme-peach .btn-cozy-add {
+  background-color: #A36B54;
+}
+
+.app-main-card.theme-rose {
+  --matcha-bg: #D9A5B3;
+  --matcha-dark: #4D2C35;
+  --matcha-active: rgba(250, 248, 245, 0.2);
+  --mascot-bg: #EAD3D9;
+}
+.app-main-card.theme-rose .btn-cozy-send,
+.app-main-card.theme-rose .btn-cozy-add {
+  background-color: #A66577;
+
+}
+
+
+
+.message-image {
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 12px;
+  display: block;
+  object-fit: cover;
+  margin-top: 4px;
+}
 
 
 @media (max-width: 768px) {
